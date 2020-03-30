@@ -20,14 +20,14 @@ router.get('/',async(req,res)=>{
         if(reply){
             
             res.write(reply);
-            res.end();
+            
             var data = await apiCallFromNode.callApi();
             client.set(key, data);
         }else{
             
             var data = await apiCallFromNode.callApi();
             res.write(JSON.stringify(data)); 
-            res.end();                       //waits for all the chunks of responses the server 
+                                   //waits for all the chunks of responses the server 
                                             //provides to our requests and then ends the connection
             client.on("error", function(error) {
                 console.error(error);
@@ -41,10 +41,8 @@ router.get('/',async(req,res)=>{
         } catch(err) {
             console.log(err);
         }
-        console.log(result);
-    
-
-
+        res.write(JSON.stringify(result.data));
+        res.end();
 });
 
 app.use("/node",router);
