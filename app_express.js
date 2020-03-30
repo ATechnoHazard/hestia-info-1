@@ -11,8 +11,10 @@ const URL = "https://coronavirus-tracker-api.herokuapp.com/v2/locations";
 
 app.use(cors());
 
-router.get('/',async(req,res)=>{
-    var key = "randomString";
+router.get('/',async(req,res)=>{   
+        let result;
+        try {
+            var key = "randomString";
     client.get(key,async function(err, reply){
         res.setHeader('Content-Type', 'application/json; charset=utf-8');
         if(reply){
@@ -35,15 +37,12 @@ router.get('/',async(req,res)=>{
             // client.get("key", redis.print);
         }
     }); 
-    async (req, res) => {
-        let result;
-        try {
             result = await axios.get(URL);
         } catch(err) {
             console.log(err);
         }
         console.log(result);
-    }
+    
 
 
 });
