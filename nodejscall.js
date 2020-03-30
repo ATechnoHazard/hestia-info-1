@@ -1,6 +1,8 @@
 const Parser = require("rss-parser");
+const axios = require("axios");
 
-EXTERNAL_URL = "https://www.who.int/rss-feeds/news-english.xml";
+const EXTERNAL_URL = "https://www.who.int/rss-feeds/news-english.xml";
+const URL = "https://coronavirus-tracker-api.herokuapp.com/v2/locations";
 
 const parser = new Parser();
 
@@ -24,6 +26,7 @@ const callExternalApiUsingHttp = async () => {
 
   // filter items using the function we wrote up top
   feed.items = feed.items.filter(filterFun);
+  
   return(feed);
 };
 
