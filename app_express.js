@@ -45,7 +45,7 @@ router.get('/countryName', async (req, res) => {
             }
         });
         result = await axios.get(URL);
-        var item = countryFilter(result, req.body.countryName);
+        var item = countryFilter(result, req.params.countryName);
 
     } catch (err) {
         console.log(err);
